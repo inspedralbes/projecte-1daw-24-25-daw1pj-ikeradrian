@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+    <?php include __DIR__ . '/templates/header.php'; ?>
+
+    <div class="container">
+        <form id="form-login" class="auth-form" action="login.php" method="POST">
+            <h2>Iniciar Sesión</h2>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
+            <p>¿No tienes cuenta? <a href="register.php">Regístrate</a></p>
+        </form>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+
+    <?php include __DIR__ . '/templates/footer.php'; ?>
+</body>
+</html>
