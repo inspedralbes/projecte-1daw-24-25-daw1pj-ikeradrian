@@ -68,7 +68,7 @@ CREATE TABLE `Incidencies` (
   `cod_incidencia` int(30) NOT NULL,
   `cod_tecnic` int(255) DEFAULT NULL,
   `departament` varchar(255) NOT NULL,
-  `estat` varchar(255) NOT NULL DEFAULT 'Obert',
+  `estat` varchar(255) NOT NULL DEFAULT 'Oberta',
   `data` datetime NOT NULL,
   `descripcio` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

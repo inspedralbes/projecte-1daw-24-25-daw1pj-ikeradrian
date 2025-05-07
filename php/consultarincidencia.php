@@ -4,7 +4,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $codigoConsulta = $_POST['codigoConsulta'];
-        $sql = "SELECT cod_incidencia, estat FROM Incidencies WHERE cod_incidencia = ?";
+        $sql = "SELECT estat FROM Incidencies WHERE cod_incidencia = ?";
         $stmt = $connexion->prepare($sql);
         $stmt->bind_param("s", $codigoConsulta);
         $stmt->execute();
@@ -12,12 +12,15 @@
         $stmt->store_result();
 
         if($stmt->num_rows > 0) {
-            $stmt->bind_param($cod_incidencia, $estat);
+            $estat = "";
+            $stmt->bind_result($estat);
             $stmt->FETCH();
-            $consulta = "La incidencia $cod_incidencia está $estat";
+            $consulta = "<h3>La incidencia $codigoConsulta está $estat</h3>";
+            echo $consulta;
         }
         else{
-            $consulta = "No hay incidencias con este codigo";
+            $consulta = "<h3>No hay incidencias con este codigo</h3>";
+            echo $consulta;
         }
         
         $stmt->close();
@@ -38,5 +41,6 @@
         <label for="codigoConsulta">Especifique su código de consulta</label> <br>
         <input type="text" id="codigoConsulta" name="codigoConsulta" required> <br>
         <input type="submit" value="Consultar">
+    </form>
 </body>
 </html>

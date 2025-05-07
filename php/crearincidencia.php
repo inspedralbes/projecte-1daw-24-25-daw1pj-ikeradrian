@@ -10,7 +10,7 @@
             $stmt = $connexion->prepare($sql);
             $stmt->bind_param("sss", $Departament, $Data, $Descripcio);
             $stmt->execute();
-            echo "<h1>Guardado</h1>";
+            echo "<h1>Incidencia guardada correctamente</h1>";
 
     }
 
