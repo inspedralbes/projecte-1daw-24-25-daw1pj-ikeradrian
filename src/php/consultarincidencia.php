@@ -13,9 +13,17 @@
 
         if($stmt->num_rows > 0) {
             $stmt->bind_param($cod_incidencia, $estat);
+            $stmt->FETCH();
+            $consulta = "La incidencia $cod_incidencia está $estat";
         }
+        else{
+            $consulta = "No hay incidencias con este codigo";
+        }
+        
+        $stmt->close();
 
     }
+    $connexion->close();
 ?>
 
 <!DOCTYPE html>
