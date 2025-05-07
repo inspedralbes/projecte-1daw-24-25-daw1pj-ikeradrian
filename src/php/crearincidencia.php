@@ -5,10 +5,12 @@
         $Departament = $connexion->real_escape_string($_POST['Departament']);
         $Data = date('Y-m-d H:i:s');
         $Descripcio = $connexion->real_escape_string($_POST['Descripcio']);
-        if(!empty('$Departament') && !empty('$Descripcio')){
             $sql = "INSERT INTO Incidencies (departament, data, descripcio) 
-                VALUES ('$Departament', '$Data', '$Descripcio')";
-        }
+                VALUES (?, ?, ?)";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bind_param("sss", $Departament, $Data, $Descripcio);
+            $stmt->execute();
+            echo "<h1>Guardado</h1>";
 
     }
 
@@ -33,9 +35,12 @@
         <input type="date" id="Data" name="Data" required> <br> -->
 
         <label for="Descripcio">Descripció:</label> <br>
-        <input type="text" id="Descripio" name="Descripcio" required> <br>
+        <input type="text" id="Descripcio" name="Descripcio" required> <br>
 
         <input type="submit" value="Enviar">
     </form>
+    <a href="index.html">
+        <button>Página de inicio</button>
+    </a>
 </body>
 </html>
