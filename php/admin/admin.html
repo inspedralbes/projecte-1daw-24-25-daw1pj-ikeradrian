@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor d'Incidències</title>
+    <title>Administrador - Gestor d'Incidències</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -34,19 +34,11 @@
             transition: all 0.3s ease;
             border: none;
         }
-        .btn-listar {
-            background-color: #0056b3;
+        .btn-admin-action {
+            background-color: #c82333;
             color: white;
         }
-        .btn-crear {
-            background-color: #198754;
-            color: white;
-        }
-        .btn-consultar {
-            background-color: #0dcaf0;
-            color: white;
-        }
-        .btn-retorn {
+        .btn-back {
             background-color: #6c757d;
             color: white;
         }
@@ -75,13 +67,13 @@
 <body>
     <div class="container text-center py-5">
         <h1 class="mb-3">Gestor d'Incidències</h1>
-        <h2 class="mb-4">Què necessites?</h2>
+        <h2 class="mb-4">Menú d'administrador</h2>
 
         <div class="d-grid gap-3 col-6 mx-auto">
-            <a href="llistarincidencies.php" class="btn btn-custom btn-listar">Llistar incidències</a>
-            <a href="crearincidencia.php" class="btn btn-custom btn-crear">Crear incidència</a>
-            <a href="consultarincidencia.php" class="btn btn-custom btn-consultar">Consultar incidència</a>
-            <a href="index.html" class="btn btn-custom btn-retorn">Tornar a l'inici</a>
+            <a href="asignartecnicos.php" class="btn btn-custom btn-admin-action">Assignar tècnics a incidències</a>
+            <a href="veure_informes.php" class="btn btn-custom btn-admin-action">Veure informes</a>
+            <a href="veure_estadistiques.php" class="btn btn-custom btn-admin-action">Veure estadístiques</a>
+            <a href="../index.html" class="btn btn-custom btn-back mt-4">Tornar enrere</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

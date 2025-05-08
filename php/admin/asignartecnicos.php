@@ -1,5 +1,5 @@
 <?php 
-    require "connexio.php";
+    require "../connexio.php";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $ID_Tecnico = $_POST['ID_Tecnico'];

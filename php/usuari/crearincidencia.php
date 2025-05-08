@@ -1,5 +1,5 @@
 <?php 
-require "connexio.php";
+require "../connexio.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $Departament = $connexion->real_escape_string($_POST['Departament']);
     $Data = date('Y-m-d H:i:s');
