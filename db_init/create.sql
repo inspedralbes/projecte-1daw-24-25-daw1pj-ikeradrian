@@ -98,11 +98,6 @@ CREATE TABLE `Tecnics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
------------------------------------------------------------
-
---
--- Inserción de técnicos
---
 
 INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (1, 0);
 INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (2, 0);
