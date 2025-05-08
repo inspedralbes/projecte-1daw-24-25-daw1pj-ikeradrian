@@ -46,7 +46,7 @@
         </form>
 
         <div class="mt-4">
-            <a href="index.html" class="btn btn-outline-secondary">⬅ Tornar a l'inici</a>
+            <a href="usuario.html" class="btn btn-outline-secondary">⬅ Tornar a l'inici</a>
         </div>
     </div>
 
