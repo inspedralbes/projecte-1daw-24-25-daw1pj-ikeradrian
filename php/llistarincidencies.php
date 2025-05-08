@@ -8,25 +8,82 @@ require_once 'connexio.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Llistat d'Incidències</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: #f8f9fa;
+            font-size: 1.1rem;
+        }
+        h1, h2 {
+            font-family: 'Merriweather', serif;
+        }
+        h1 {
+            color: #003366;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        h2 {
+            color: #555;
+            font-size: 1.75rem;
+            font-weight: 400;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+            font-size: 1.05rem;
+        }
+        .btn {
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .btn-outline-danger {
+            border-width: 2px;
+        }
+        .btn-outline-secondary,
+        .btn-outline-success {
+            border-width: 2px;
+            font-size: 1rem;
+            padding: 0.6rem 1.25rem;
+        }
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+            }
+            .table th, .table td {
+                font-size: 0.95rem;
+            }
+            .btn {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
 <div class="container py-5">
-    <h1 class="text-primary text-center mb-4">Gestor d'Incidències</h1>
-    <h2 class="text-secondary text-center mb-4">Llistat d'incidències</h2>
+    <h1 class="text-center mb-3">Gestor d'Incidències</h1>
+    <h2 class="text-center mb-4">Llistat d'incidències</h2>
 
     <?php
     $sql = "SELECT cod_incidencia, estat FROM Incidencies";
     $result = $connexion->query($sql);
 
     if ($result && $result->num_rows > 0): ?>
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered align-middle">
+        <div class="table-responsive shadow-sm">
+            <table class="table table-striped table-bordered align-middle bg-white rounded">
                 <thead class="table-primary">
                     <tr>
                         <th scope="col">Codi Incidència</th>
                         <th scope="col">Estat</th>
-                        <th scope="col">Accions</th>
+                        <th scope="col" class="text-center">Accions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +94,7 @@ require_once 'connexio.php';
                         <tr>
                             <td><?= $cod_incidencia ?></td>
                             <td><?= $estat ?></td>
-                            <td>
+                            <td class="text-center">
                                 <a href="esborrar.php?cod_incidencia=<?= $cod_incidencia ?>" class="btn btn-sm btn-outline-danger">Esborrar</a>
                             </td>
                         </tr>
@@ -56,7 +113,6 @@ require_once 'connexio.php';
         <a href="crearincidencia.php" class="btn btn-outline-success">Crear nova incidència</a>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
