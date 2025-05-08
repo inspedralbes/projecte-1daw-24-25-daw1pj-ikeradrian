@@ -164,12 +164,6 @@ ALTER TABLE `Usuaris`
 --
 
 --
--- AUTO_INCREMENT per la taula `Actuacions`
---
-ALTER TABLE `Actuacions`
-  MODIFY `cod_incidencia` int(30) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT per la taula `Incidencies`
 --
 ALTER TABLE `Incidencies`
