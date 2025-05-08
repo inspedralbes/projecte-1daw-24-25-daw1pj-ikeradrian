@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $estat = "";
         $stmt->bind_result($estat);
         $stmt->fetch();
-        $consulta = "<div class='alert alert-success'>✅ La incidència <strong>$codigoConsulta</strong> està <strong>$estat</strong>.</div>";
+        $consulta = "<div class='alert alert-success'>La incidència <strong>$codigoConsulta</strong> està <strong>$estat</strong>.</div>";
     } else {
         $consulta = "<div class='alert alert-danger'>⚠ No hi ha cap incidència amb aquest codi.</div>";
     }
@@ -36,7 +36,7 @@ $connexion->close();
 
     <div class="container text-center py-5">
         <h1 class="text-primary mb-3">Gestor d'Incidències</h1>
-        <h2 class="text-secondary mb-4">🔍 Consultar incidència</h2>
+        <h2 class="text-secondary mb-4">Consultar incidència</h2>
 
         <?php if (!empty($consulta)) echo $consulta; ?>
 
