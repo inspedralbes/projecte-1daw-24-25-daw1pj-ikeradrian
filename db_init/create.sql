@@ -163,7 +163,7 @@ ALTER TABLE `Usuaris`
 -- AUTO_INCREMENT per les taules bolcades
 --
 
-ALTER TABLE `Actiacions`
+ALTER TABLE `Actuacions`
   MODIFY `cod_actuacio` int(255) NOT NULL AUTO_INCREMENT;
 
 --
