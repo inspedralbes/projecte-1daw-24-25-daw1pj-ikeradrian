@@ -127,7 +127,7 @@ CREATE TABLE `Usuaris` (
 -- Índexs per a la taula `Actuacions`
 --
 ALTER TABLE `Actuacions`
-  ADD PRIMARY KEY (`cod_incidencia`);
+  ADD PRIMARY KEY (`cod_actuacio`);
 
 --
 -- Índexs per a la taula `Departament`
