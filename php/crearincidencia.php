@@ -10,7 +10,7 @@
         $stmt->bind_param("sss", $Departament, $Data, $Descripcio);
         $stmt->execute();
 
-        $missatge = "✅ Incidència guardada correctament.";
+        $missatge = "Incidència guardada correctament.";
     }
     $connexion->close();
 ?>
@@ -27,7 +27,7 @@
 
     <div class="container text-center py-5">
         <h1 class="text-primary mb-3">Gestor d'Incidències</h1>
-        <h2 class="text-secondary mb-4">📝 Crear nova incidència</h2>
+        <h2 class="text-secondary mb-4">Crear nova incidència</h2>
 
         <?php if (!empty($missatge)) echo "<div class='alert alert-success'>$missatge</div>"; ?>
 

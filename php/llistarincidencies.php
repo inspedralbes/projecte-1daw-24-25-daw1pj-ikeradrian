@@ -13,7 +13,7 @@ require_once 'connexio.php';
 
 <div class="container py-5">
     <h1 class="text-primary text-center mb-4">Gestor d'Incidències</h1>
-    <h2 class="text-secondary text-center mb-4">📋 Llistat d'incidències</h2>
+    <h2 class="text-secondary text-center mb-4">Llistat d'incidències</h2>
 
     <?php
     $sql = "SELECT cod_incidencia, estat FROM Incidencies";
@@ -38,7 +38,7 @@ require_once 'connexio.php';
                             <td><?= $cod_incidencia ?></td>
                             <td><?= $estat ?></td>
                             <td>
-                                <a href="esborrar.php?cod_incidencia=<?= $cod_incidencia ?>" class="btn btn-sm btn-outline-danger">🗑 Esborrar</a>
+                                <a href="esborrar.php?cod_incidencia=<?= $cod_incidencia ?>" class="btn btn-sm btn-outline-danger">Esborrar</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
@@ -46,14 +46,14 @@ require_once 'connexio.php';
             </table>
         </div>
     <?php else: ?>
-        <div class="alert alert-info text-center">📭 No hi ha incidències a mostrar.</div>
+        <div class="alert alert-info text-center">No hi ha incidències a mostrar.</div>
     <?php endif; ?>
 
     <?php $connexion->close(); ?>
 
     <div class="text-center mt-4">
-        <a href="usuario.html" class="btn btn-outline-secondary me-2">🏠 Inici</a>
-        <a href="crearincidencia.php" class="btn btn-outline-success">📝 Crear nova incidència</a>
+        <a href="usuario.html" class="btn btn-outline-secondary me-2">Inici</a>
+        <a href="crearincidencia.php" class="btn btn-outline-success">Crear nova incidència</a>
     </div>
 </div>
 
