@@ -163,6 +163,9 @@ ALTER TABLE `Usuaris`
 -- AUTO_INCREMENT per les taules bolcades
 --
 
+ALTER TABLE `Actiacions`
+  MODIFY `cod_actuacio` int(255) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT per la taula `Incidencies`
 --
