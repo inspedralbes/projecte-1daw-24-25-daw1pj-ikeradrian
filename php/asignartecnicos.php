@@ -44,7 +44,7 @@
             <button type="submit" class="btn btn-success w-100">Enviar</button>
          </form>
         <div class="mt-4">
-             <a href="admin.html" class="btn btn-outline-secondary">⬅ Tornar a l'inici</a>
+             <a href="admin.html" class="btn btn-outline-secondary">Tornar a l'inici</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
