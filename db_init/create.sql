@@ -54,6 +54,7 @@ CREATE TABLE `Actuacions` (
 
 CREATE TABLE `Departament` (
   `cod_depart` int(30) NOT NULL,
+  `nom_depart` varchar(255) NOT NULL,
   `consum_depart` varchar(255) NOT NULL,
   `temps_dedicat` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -61,11 +62,11 @@ CREATE TABLE `Departament` (
 
 
 
-INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (1, 0, 0);
-INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (2, 0, 0);
-INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (3, 0, 0);
-INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (4, 0, 0);
-INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (5, 0, 0);
+INSERT INTO Departament (cod_depart, nom_depart, consum_depart, temps_dedicat) VALUES (1, "RRHH", 0, 0);
+INSERT INTO Departament (cod_depart, nom_depart, consum_depart, temps_dedicat) VALUES (2, "Contabilidad", 0, 0);
+INSERT INTO Departament (cod_depart, nom_depart, consum_depart, temps_dedicat) VALUES (3, "Marketing", 0, 0);
+INSERT INTO Departament (cod_depart, nom_depart, consum_depart, temps_dedicat) VALUES (4, "Direccion", 0, 0);
+INSERT INTO Departament (cod_depart, nom_depart, consum_depart, temps_dedicat) VALUES (5, "Informatica", 0, 0);
 
 
 
