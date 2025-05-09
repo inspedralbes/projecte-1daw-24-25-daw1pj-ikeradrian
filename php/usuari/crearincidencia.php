@@ -10,6 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $stmt->bind_param("sss", $Departament, $Data, $Descripcio);
     $stmt->execute();
 
+    $sql2 = "UPDATE Departament SET consum_depart = (consum_depart + 1) WHERE cod_depart = ?";
+    $stmt2 = $connexion->prepare($sql2);
+    $stmt2->bind_param("s", $Departament);
+    $stmt2->execute();
+
     $missatge = "Incidència guardada correctament.";
 }
 $connexion->close();
