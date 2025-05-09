@@ -1,5 +1,14 @@
 <?php 
 require "../connexio.php";
+
+$departaments = [];
+$result = $connexion->query("SELECT cod_depart, nom_depart FROM Departament");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $departaments[] = $row;
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $Departament = $connexion->real_escape_string($_POST['Departament']);
     $Data = date('Y-m-d H:i:s');
@@ -108,12 +117,22 @@ $connexion->close();
         <form method="post" class="text-start mx-auto mt-4" style="max-width: 500px;">
             <div class="mb-3">
                 <label for="Departament" class="form-label">Departament de la incidència:</label>
-                <input type="text" class="form-control" id="Departament" name="Departament" required>
+                <select class="form-control" id="Departament" name="Departament" required>
+                    <option value="" disabled selected>Selecciona un departament</option>
+                    <?php foreach ($departaments as $d): ?>
+                        <option value="<?= htmlspecialchars($d['cod_depart']) ?>">
+                            <?= htmlspecialchars($d['nom_depart']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="mb-3">
-                <label for="Descripcio" class="form-label">Descripció:</label>
-                <input type="text" class="form-control" id="Descripcio" name="Descripcio" required>
+                <div class="mb-3">
+    <label for="Descripcio" class="form-label">Descripció:</label>
+    <textarea class="form-control" id="Descripcio" name="Descripcio" rows="5" required></textarea>
+</div>
+
             </div>
 
             <button type="submit" class="btn btn-submit w-100">Enviar</button>
