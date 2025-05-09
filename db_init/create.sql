@@ -58,6 +58,22 @@ CREATE TABLE `Departament` (
   `temps_dedicat` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+
+
+INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (1, 0, 0);
+INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (2, 0, 0);
+INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (3, 0, 0);
+INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (4, 0, 0);
+INSERT INTO Departament (cod_depart, consum_depart, temps_dedicat) VALUES (5, 0, 0);
+
+
+
+
+
+
+
+
 -- --------------------------------------------------------
 
 --

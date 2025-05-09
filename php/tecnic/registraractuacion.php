@@ -12,6 +12,14 @@
         $stmt = $connexion->prepare($sql);
         $stmt->bind_param("sssss", $cod_incidencia, $cod_tecnic, $data, $temps_dedicat, $descripcio);
         $stmt->execute();
+
+        $sql2 = "UPDATE Departament 
+        SET temps_dedicat = temps_dedicat + ? 
+        WHERE cod_depart = (SELECT departament FROM Incidencies WHERE cod_incidencia = ?)";
+        $stmt2 = $connexion->prepare($sql2);
+        $stmt2->bind_param("ss", $temps_dedicat, $cod_incidencia);
+        $stmt2->execute();
+
     }
     $connexion->close();
 ?>
