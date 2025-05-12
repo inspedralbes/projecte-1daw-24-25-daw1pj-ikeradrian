@@ -111,7 +111,6 @@ CREATE TABLE `Informes` (
 
 CREATE TABLE `Tecnics` (
   `cod_tecnic` int(30) NOT NULL,
-  `nom_tecnic` varchar(255) NOT NULL,
   `total_incidencies` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
