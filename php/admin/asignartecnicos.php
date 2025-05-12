@@ -6,25 +6,34 @@ $missatge = "";
 
 // Si se ha enviado el formulario para asignar un técnico
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nom_Tecnico = $_POST['nom_tecnico']; // Recibimos el nombre del técnico
+    $nom_Tecnico = $_POST['nom_tecnico'] ?? ''; // El operador null coalescente asigna '' si es null
     $ID_Incidencia = $_POST['ID_Incidencia'];
+    $prioritat = $_POST['prioritat'] ?? 'Mitjana'; // Si no se selecciona prioridad, asignamos 'Mitjana'
 
-    // Actualizar la incidencia con el nombre del técnico seleccionado
-    $sql1 = "UPDATE Incidencies SET nom_tecnic = ? WHERE cod_incidencia = ?";
-    $stmt1 = $connexion->prepare($sql1);
-    $stmt1->bind_param("si", $nom_Tecnico, $ID_Incidencia); // "si" porque uno es string y el otro es entero
+    // Aseguramos que los campos necesarios estén presentes
+    if (!empty($nom_Tecnico) && !empty($ID_Incidencia)) {
+        // Actualizar la incidencia con el nombre del técnico y la prioridad seleccionada
+        $sql1 = "UPDATE Incidencies SET nom_tecnic = ?, prioritat = ? WHERE cod_incidencia = ?";
+        $stmt1 = $connexion->prepare($sql1);
+        $stmt1->bind_param("ssi", $nom_Tecnico, $prioritat, $ID_Incidencia); // 'ssi' significa dos strings y un entero
 
-    if ($stmt1->execute()) {
-        $missatge = "Tècnic assignat correctament.";
+        if ($stmt1->execute()) {
+            $missatge = "Tècnic assignat correctament amb la prioritat.";
+        } else {
+            $missatge = "Error al assignar el tècnic o la prioritat.";
+        }
+
+        $stmt1->close();
     } else {
-        $missatge = "Error al assignar el tècnic.";
+        $missatge = "Tots els camps són obligatoris.";
     }
-
-    $stmt1->close();
 }
 
-// Obtener las incidencias y técnicos disponibles
-$sql = "SELECT cod_incidencia, departament, estat, descripcio, nom_tecnic FROM Incidencies";
+// Obtener las incidencias con los nombres de los departamentos
+$sql = "SELECT Incidencies.cod_incidencia, Incidencies.departament, Incidencies.estat, Incidencies.descripcio, 
+               Incidencies.nom_tecnic, Incidencies.prioritat, Departament.nom_depart 
+        FROM Incidencies 
+        JOIN Departament ON Incidencies.departament = Departament.cod_depart";
 $result = $connexion->query($sql);
 
 // Obtener técnicos disponibles
@@ -49,7 +58,7 @@ $connexion->close();
 
         <!-- Mostrar mensaje de confirmación -->
         <?php if (!empty($missatge)): ?>
-            <div class="alert alert-info text-center"><?= htmlspecialchars($missatge) ?></div>
+            <div class="alert alert-info text-center"><?= htmlspecialchars($missatge, ENT_QUOTES, 'UTF-8') ?></div>
         <?php endif; ?>
 
         <div class="table-responsive shadow-sm">
@@ -61,6 +70,7 @@ $connexion->close();
                         <th scope="col">Estat</th>
                         <th scope="col">Descripció</th>
                         <th scope="col">Tècnic Actual</th>
+                        <th scope="col">Prioritat</th>
                         <th scope="col" class="text-center">Assignar Tècnic</th>
                     </tr>
                 </thead>
@@ -69,11 +79,12 @@ $connexion->close();
                     // Si hay resultados de incidencias, mostrarlas
                     if ($result && $result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            $cod_incidencia = htmlspecialchars($row["cod_incidencia"]);
-                            $departament = htmlspecialchars($row["departament"]);
-                            $estat = htmlspecialchars($row["estat"]);
-                            $descripcio = htmlspecialchars($row["descripcio"]);
-                            $nom_tecnic = htmlspecialchars($row["nom_tecnic"]);
+                            $cod_incidencia = htmlspecialchars($row["cod_incidencia"] ?? '', ENT_QUOTES, 'UTF-8');
+                            $departament = htmlspecialchars($row["nom_depart"] ?? '', ENT_QUOTES, 'UTF-8');
+                            $estat = htmlspecialchars($row["estat"] ?? '', ENT_QUOTES, 'UTF-8');
+                            $descripcio = htmlspecialchars($row["descripcio"] ?? '', ENT_QUOTES, 'UTF-8');
+                            $nom_tecnic = htmlspecialchars($row["nom_tecnic"] ?? '', ENT_QUOTES, 'UTF-8');
+                            $prioritat = htmlspecialchars($row["prioritat"] ?? 'Mitjana', ENT_QUOTES, 'UTF-8'); // Si no tiene prioridad, por defecto 'Mitjana'
 
                     ?>
                     <tr>
@@ -82,24 +93,42 @@ $connexion->close();
                         <td><?= $estat ?></td>
                         <td><?= $descripcio ?></td>
                         <td><?= $nom_tecnic ? $nom_tecnic : 'No assignat' ?></td>
+                        <td><?= $prioritat ?></td>
                         <td class="text-center">
-                            <!-- Formulario para asignar un tècnic -->
+                            <!-- Formulario para asignar un tècnic y prioridad -->
                             <form method="POST">
                                 <input type="hidden" name="ID_Incidencia" value="<?= $cod_incidencia ?>">
-                                <select class="form-select" name="nom_tecnico" required>
+
+                                <!-- Desplegable para seleccionar el técnico -->
+                                <select class="form-select mb-2" name="nom_tecnico" required>
                                     <option value="" disabled selected>Selecciona tècnic</option>
-                                    <!-- Aquí cargamos los técnicos disponibles -->
+                                    <!-- Aquí cargamos los técnicos disponibles para cada fila -->
                                     <?php
                                     // Verificar si hay técnicos disponibles
                                     if ($tecnics_result && $tecnics_result->num_rows > 0) {
+                                        // Volver a la primera fila de resultados de técnicos
+                                        $tecnics_result->data_seek(0);
                                         while ($tecnic = $tecnics_result->fetch_assoc()) {
-                                            $id_tecnic = htmlspecialchars($tecnic["cod_tecnic"]);
-                                            $nom_tecnic = htmlspecialchars($tecnic["nom_tecnic"]);
-                                            echo "<option value='$nom_tecnic' " . ($nom_tecnic == $row["nom_tecnic"] ? 'selected' : '') . ">$nom_tecnic</option>";
+                                            $id_tecnic = htmlspecialchars($tecnic["cod_tecnic"] ?? '', ENT_QUOTES, 'UTF-8');
+                                            $tecnic_nom = htmlspecialchars($tecnic["nom_tecnic"] ?? '', ENT_QUOTES, 'UTF-8');
+                                            
+                                            // Aseguramos que el técnico actual esté seleccionado
+                                            $selected = ($tecnic_nom == $row["nom_tecnic"]) ? 'selected' : '';
+                                            echo "<option value='$tecnic_nom' $selected>$tecnic_nom</option>";
                                         }
                                     }
                                     ?>
                                 </select>
+
+                                <!-- Desplegable para seleccionar la prioridad -->
+                                <select class="form-select" name="prioritat" required>
+                                    <option value="Molt alta" <?= $prioritat == 'Molt alta' ? 'selected' : '' ?>>Molt alta</option>
+                                    <option value="Alta" <?= $prioritat == 'Alta' ? 'selected' : '' ?>>Alta</option>
+                                    <option value="Mitjana" <?= $prioritat == 'Mitjana' ? 'selected' : '' ?>>Mitjana</option>
+                                    <option value="Baixa" <?= $prioritat == 'Baixa' ? 'selected' : '' ?>>Baixa</option>
+                                    <option value="Molt baixa" <?= $prioritat == 'Molt baixa' ? 'selected' : '' ?>>Molt baixa</option>
+                                </select>
+
                                 <button type="submit" class="btn btn-warning mt-2 w-100">Modificar</button>
                             </form>
                         </td>
@@ -107,7 +136,7 @@ $connexion->close();
                     <?php
                         }
                     } else {
-                        echo "<tr><td colspan='6' class='text-center'>No hi ha incidències per mostrar.</td></tr>";
+                        echo "<tr><td colspan='7' class='text-center'>No hi ha incidències per mostrar.</td></tr>";
                     }
                     ?>
                 </tbody>
