@@ -68,7 +68,7 @@ INSERT INTO `Departament` (`cod_depart`, `nom_depart`, `consum_depart`, `temps_d
 DROP TABLE IF EXISTS `Incidencies`;
 CREATE TABLE `Incidencies` (
   `cod_incidencia` int NOT NULL AUTO_INCREMENT,
-  `cod_tecnic` int DEFAULT NULL,
+  `nom_tecnic` varchar(255) DEFAULT NULL,
   `departament` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `estat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Oberta',
   `data` datetime NOT NULL,
