@@ -111,16 +111,17 @@ CREATE TABLE `Informes` (
 
 CREATE TABLE `Tecnics` (
   `cod_tecnic` int(30) NOT NULL,
+  `nom_tecnic` varchar(255) NOT NULL,
   `total_incidencies` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (1, 0);
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (2, 0);
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (3, 0);
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (4, 0);
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (5, 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (1, "Jesus Rodriguez", 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (2, "Francisco Alarcon", 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (3, "Aitor Ruibal", 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (4, "Daniel Rous", 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (5, "Lamine Yamal", 0);
 
 
 -- --------------------------------------------------------
