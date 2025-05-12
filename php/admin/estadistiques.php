@@ -36,5 +36,6 @@ ini_set('display_errors', 1);
         </div>
         <a href="admin.html" class="btn btn-secondary mt-4">Tornar al menú</a>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
