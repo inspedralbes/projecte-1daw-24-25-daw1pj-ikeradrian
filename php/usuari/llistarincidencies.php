@@ -73,7 +73,7 @@ require_once '../connexio.php';
     <h2 class="text-center mb-4">Llistat d'incidències</h2>
 
     <?php
-    $sql = "SELECT cod_incidencia, estat FROM Incidencies";
+    $sql = "SELECT cod_incidencia, estat, descripcio FROM Incidencies";
     $result = $connexion->query($sql);
 
     if ($result && $result->num_rows > 0): ?>
@@ -83,19 +83,20 @@ require_once '../connexio.php';
                     <tr>
                         <th scope="col">Codi Incidència</th>
                         <th scope="col">Estat</th>
-                        <th scope="col" class="text-center">Accions</th>
+                        <th scope="col" class="text-center">descripcio</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): 
                         $cod_incidencia = htmlspecialchars($row["cod_incidencia"]);
                         $estat = htmlspecialchars($row["estat"]);
+                        $descripcio = htmlspecialchars($row["descripcio"])
                     ?>
                         <tr>
                             <td><?= $cod_incidencia ?></td>
                             <td><?= $estat ?></td>
-                            <td class="text-center">
-                                <a href="esborrar.php?cod_incidencia=<?= $cod_incidencia ?>" class="btn btn-sm btn-outline-danger">Esborrar</a>
+                            <td class="text-center"><?= $descripcio ?></td>
+                              
                             </td>
                         </tr>
                     <?php endwhile; ?>
