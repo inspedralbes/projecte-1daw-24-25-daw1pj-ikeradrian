@@ -28,7 +28,7 @@ services:
 
   db:
     # Tota la informació d'aquesta imatge està https://dockerhub.com/_/mysql
-    image: mysql:9.3
+    image: mysql:8.3
     environment:
       MYSQL_ROOT_PASSWORD: passwordDeRootQueNoShaDeFerServirMai
       # És millor no crear la BBDD aquí, ja que no pots control·lar la codificació
