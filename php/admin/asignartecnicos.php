@@ -6,13 +6,13 @@ $missatge = "";
 
 // Si se ha enviado el formulario para asignar un técnico
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $ID_Tecnico = $_POST['ID_Tecnico'];
+    $nom_Tecnico = $_POST['nom_tecnico']; // Recibimos el nombre del técnico
     $ID_Incidencia = $_POST['ID_Incidencia'];
 
-    // Actualizar la incidencia con el técnico seleccionado
-    $sql1 = "UPDATE Incidencies SET cod_tecnic = ? WHERE cod_incidencia = ?";
+    // Actualizar la incidencia con el nombre del técnico seleccionado
+    $sql1 = "UPDATE Incidencies SET nom_tecnic = ? WHERE cod_incidencia = ?";
     $stmt1 = $connexion->prepare($sql1);
-    $stmt1->bind_param("ss", $ID_Tecnico, $ID_Incidencia);
+    $stmt1->bind_param("si", $nom_Tecnico, $ID_Incidencia); // "si" porque uno es string y el otro es entero
 
     if ($stmt1->execute()) {
         $missatge = "Tècnic assignat correctament.";
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Obtener las incidencias y técnicos disponibles
-$sql = "SELECT cod_incidencia, departament, estat, descripcio, cod_tecnic FROM Incidencies";
+$sql = "SELECT cod_incidencia, departament, estat, descripcio, nom_tecnic FROM Incidencies";
 $result = $connexion->query($sql);
 
 // Obtener técnicos disponibles
@@ -73,19 +73,20 @@ $connexion->close();
                             $departament = htmlspecialchars($row["departament"]);
                             $estat = htmlspecialchars($row["estat"]);
                             $descripcio = htmlspecialchars($row["descripcio"]);
-                            $cod_tecnic = htmlspecialchars($row["cod_tecnic"]);
+                            $nom_tecnic = htmlspecialchars($row["nom_tecnic"]);
+
                     ?>
                     <tr>
                         <td><?= $cod_incidencia ?></td>
                         <td><?= $departament ?></td>
                         <td><?= $estat ?></td>
                         <td><?= $descripcio ?></td>
-                        <td><?= $cod_tecnic ? $cod_tecnic : 'No assignat' ?></td>
+                        <td><?= $nom_tecnic ? $nom_tecnic : 'No assignat' ?></td>
                         <td class="text-center">
                             <!-- Formulario para asignar un tècnic -->
                             <form method="POST">
                                 <input type="hidden" name="ID_Incidencia" value="<?= $cod_incidencia ?>">
-                                <select class="form-select" name="ID_Tecnico" required>
+                                <select class="form-select" name="nom_tecnico" required>
                                     <option value="" disabled selected>Selecciona tècnic</option>
                                     <!-- Aquí cargamos los técnicos disponibles -->
                                     <?php
@@ -94,7 +95,7 @@ $connexion->close();
                                         while ($tecnic = $tecnics_result->fetch_assoc()) {
                                             $id_tecnic = htmlspecialchars($tecnic["cod_tecnic"]);
                                             $nom_tecnic = htmlspecialchars($tecnic["nom_tecnic"]);
-                                            echo "<option value='$id_tecnic' " . ($cod_tecnic == $id_tecnic ? 'selected' : '') . ">$nom_tecnic</option>";
+                                            echo "<option value='$nom_tecnic' " . ($nom_tecnic == $row["nom_tecnic"] ? 'selected' : '') . ">$nom_tecnic</option>";
                                         }
                                     }
                                     ?>

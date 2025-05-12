@@ -43,8 +43,8 @@ CREATE TABLE `Actuacions` (
   `cod_actuacio` int NOT NULL AUTO_INCREMENT,
   `cod_tecnic` int NOT NULL,
   `data_actuacio` date NOT NULL,
-  `temps_dedicat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `descripcio` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `temps_dedicat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `descripcio` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`cod_actuacio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -52,37 +52,39 @@ CREATE TABLE `Actuacions` (
 DROP TABLE IF EXISTS `Departament`;
 CREATE TABLE `Departament` (
   `cod_depart` int NOT NULL,
-  `nom_depart` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `consum_depart` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `temps_dedicat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom_depart` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `consum_depart` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `temps_dedicat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`cod_depart`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `Departament` (`cod_depart`, `nom_depart`, `consum_depart`, `temps_dedicat`) VALUES
 (1,	'RRHH',	'0',	'0'),
 (2,	'Contabilidad',	'0',	'0'),
-(3,	'Marketing',	'0',	'0'),
+(3,	'Marketing',	'1',	'0'),
 (4,	'Direccion',	'0',	'0'),
 (5,	'Informatica',	'0',	'0');
 
 DROP TABLE IF EXISTS `Incidencies`;
 CREATE TABLE `Incidencies` (
   `cod_incidencia` int NOT NULL AUTO_INCREMENT,
-  `nom_tecnic` varchar(255) DEFAULT NULL,
-  `departament` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `estat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Oberta',
+  `nom_tecnic` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `departament` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `estat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Oberta',
   `data` datetime NOT NULL,
-  `descripcio` text COLLATE utf8mb4_general_ci NOT NULL,
+  `descripcio` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`cod_incidencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `Incidencies` (`cod_incidencia`, `nom_tecnic`, `departament`, `estat`, `data`, `descripcio`) VALUES
+(1,	'Ohian Sancet',	'3',	'Oberta',	'2025-05-12 11:32:52',	'dnasdajdnajdnaskjd\\r\\n');
 
 DROP TABLE IF EXISTS `Informes`;
 CREATE TABLE `Informes` (
   `cod_incidencia` int NOT NULL AUTO_INCREMENT,
   `cod_tecnic` int NOT NULL,
   `data_incidencia` date NOT NULL,
-  `temps_dedicat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `temps_dedicat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`cod_incidencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -104,8 +106,8 @@ INSERT INTO `Tecnics` (`cod_tecnic`, `nom_tecnic`) VALUES
 DROP TABLE IF EXISTS `Usuaris`;
 CREATE TABLE `Usuaris` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `departament` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `departament` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
