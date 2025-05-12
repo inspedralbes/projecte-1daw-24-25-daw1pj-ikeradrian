@@ -117,11 +117,11 @@ CREATE TABLE `Tecnics` (
 
 
 
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (1, "Jesus Rodriguez", 0);
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (2, "Francisco Alarcon", 0);
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (3, "Aitor Ruibal", 0);
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (4, "Daniel Rous", 0);
-INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (5, "Lamine Yamal", 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (1, 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (2, 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (3, 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (4, 0);
+INSERT INTO Tecnics (cod_tecnic, total_incidencies) VALUES (5, 0);
 
 
 -- --------------------------------------------------------
