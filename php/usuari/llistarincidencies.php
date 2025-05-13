@@ -73,7 +73,11 @@ require_once '../connexio.php';
     <h2 class="text-center mb-4">Llistat d'incidències</h2>
 
     <?php
-    $sql = "SELECT cod_incidencia, departament, estat, prioritat, descripcio FROM Incidencies";
+    // Consulta amb JOIN per obtenir també el nom del departament
+    $sql = "SELECT i.cod_incidencia, d.nom_depart AS departament, i.estat, i.prioritat, i.descripcio
+            FROM Incidencies i
+            LEFT JOIN Departament d ON i.departament = d.cod_depart";
+
     $result = $connexion->query($sql);
 
     if ($result && $result->num_rows > 0): ?>
@@ -85,15 +89,15 @@ require_once '../connexio.php';
                         <th scope="col">Departament</th>
                         <th scope="col">Estat</th>
                         <th scope="col">Prioritat</th>
-                        <th scope="col" class="text-center">Descripcio</th>
+                        <th scope="col" class="text-center">Descripció</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row = $result->fetch_assoc()): 
+                    <?php while ($row = $result->fetch_assoc()):
                         $cod_incidencia = htmlspecialchars((string) $row["cod_incidencia"]);
-                        $departament = htmlspecialchars((string) $row["departament"]);
+                        $departament = htmlspecialchars((string) ($row["departament"] ?? 'Desconegut'));
                         $estat = htmlspecialchars((string) $row["estat"]);
-                        $prioritat = htmlspecialchars((string) ($row["prioritat"] ?? 'Sin asignar'));
+                        $prioritat = htmlspecialchars((string) ($row["prioritat"] ?? 'Sin assignar'));
                         $descripcio = htmlspecialchars((string) ($row["descripcio"] ?? ''));
                     ?>
                         <tr>
