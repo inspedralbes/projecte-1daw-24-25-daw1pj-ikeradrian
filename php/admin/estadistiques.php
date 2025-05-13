@@ -3,17 +3,12 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 
-require '../vendor/autoload.php'; // MongoDB client via Composer
-
+require '../vendor/autoload.php';
 use MongoDB\Client;
 use MongoDB\BSON\UTCDateTime;
 
-// Connexió MongoDB
 $client = new Client("mongodb://localhost:27017");
 $collection = $client->gestor_incidencies->access_logs;
-
-// Estadístiques
-$totalAccessos = $collection->countDocuments($filters);
 
 // Pàgines més visitades
 $paginesMesVisitades = $collection->aggregate([
