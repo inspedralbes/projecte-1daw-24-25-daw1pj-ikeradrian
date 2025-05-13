@@ -73,7 +73,7 @@ require_once '../connexio.php';
     <h2 class="text-center mb-4">Llistat d'incidències</h2>
 
     <?php
-    $sql = "SELECT cod_incidencia, estat, descripcio FROM Incidencies";
+    $sql = "SELECT cod_incidencia, departament, estat, prioritat, descripcio FROM Incidencies";
     $result = $connexion->query($sql);
 
     if ($result && $result->num_rows > 0): ?>
@@ -82,22 +82,26 @@ require_once '../connexio.php';
                 <thead class="table-primary">
                     <tr>
                         <th scope="col">Codi Incidència</th>
+                        <th scope="col">Departament</th>
                         <th scope="col">Estat</th>
-                        <th scope="col" class="text-center">descripcio</th>
+                        <th scope="col">Prioritat</th>
+                        <th scope="col" class="text-center">Descripcio</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()): 
-                        $cod_incidencia = htmlspecialchars($row["cod_incidencia"]);
-                        $estat = htmlspecialchars($row["estat"]);
-                        $descripcio = htmlspecialchars($row["descripcio"])
+                        $cod_incidencia = htmlspecialchars((string) $row["cod_incidencia"]);
+                        $departament = htmlspecialchars((string) $row["departament"]);
+                        $estat = htmlspecialchars((string) $row["estat"]);
+                        $prioritat = htmlspecialchars((string) ($row["prioritat"] ?? 'Sin asignar'));
+                        $descripcio = htmlspecialchars((string) ($row["descripcio"] ?? ''));
                     ?>
                         <tr>
                             <td><?= $cod_incidencia ?></td>
+                            <td><?= $departament ?></td>
                             <td><?= $estat ?></td>
+                            <td><?= $prioritat ?></td>
                             <td class="text-center"><?= $descripcio ?></td>
-                              
-                            </td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
