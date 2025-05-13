@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <div class="mt-4">
-            <a href="tecnic.html" class="btn btn-outline-secondary">🔙 Tornar a l'inici</a>
+            <a href="tecnic.html" class="btn btn-outline-secondary">Tornar a l'inici</a>
         </div>
     </div>
 
