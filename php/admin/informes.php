@@ -29,55 +29,61 @@ require "../connexio.php";
             font-weight: bold;
             margin-top: 1rem;
         }
+        .text-muted {
+            font-style: italic;
+            color: #6c757d;
+        }
     </style>
 </head>
 <body>
     <div class="container py-5">
 
         <h1 class="text-center mb-5">Informe de Tècnics</h1>
-
+        <h2 class="mb-4">Tècnics i Incidències</h2>
         <?php
-
-        $sql = "
+        $sql_tecnics = "
             SELECT 
                 t.nom_tecnic AS tecnic,
                 i.cod_incidencia,
+                i.descripcio,
                 i.data,
-                i.prioritat,
-                SUM(CAST(a.temps_dedicat AS UNSIGNED)) AS temps_total
-            FROM Actuacions a
-            JOIN Tecnics t ON a.cod_tecnic = t.cod_tecnic
-            JOIN Incidencies i ON a.cod_incidencia = i.cod_incidencia
-            WHERE i.estat != 'Tancada'
-            GROUP BY t.nom_tecnic, i.cod_incidencia, i.data, i.prioritat
-            ORDER BY t.nom_tecnic, 
-                     FIELD(i.prioritat, 'Alta', 'Mitjana', 'Baixa'), 
-                     i.data;
+                i.prioritat
+            FROM Tecnics t
+            LEFT JOIN Incidencies i ON i.nom_tecnic = t.nom_tecnic
+            WHERE i.estat != 'Tancada' OR i.estat IS NULL
+            ORDER BY t.nom_tecnic, FIELD(i.prioritat, 'Alta', 'Mitjana', 'Baixa'), i.data;
         ";
 
-        $result = $connexion->query($sql);
+        $result_tecnics = $connexion->query($sql_tecnics);
 
-        $dades = [];
-        while ($row = $result->fetch_assoc()) {
+        $tecnics_data = [];
+        while ($row = $result_tecnics->fetch_assoc()) {
             $tecnic = $row['tecnic'];
-            $prioritat = $row['prioritat'] ?? 'Sense prioritat';
-            $dades[$tecnic][$prioritat][] = $row;
+            if ($row['cod_incidencia']) {
+                $tecnics_data[$tecnic][] = $row;
+            } else {
+
+                $tecnics_data[$tecnic] = null;
+            }
         }
 
-        foreach ($dades as $tecnic => $prioritats) {
-            echo "<div class='card p-4'>";
-            echo "<h2 class='card-title'>Tècnic: $tecnic</h2>";
 
-            foreach (['Alta', 'Mitjana', 'Baixa', 'Sense prioritat'] as $nivell) {
-                if (isset($prioritats[$nivell])) {
-                    echo "<div class='priority-header'>Prioritat: $nivell</div><ul class='list-group mb-3'>";
-                    foreach ($prioritats[$nivell] as $incidencia) {
-                        echo "<li class='list-group-item'>";
-                        echo "Incidència #{$incidencia['cod_incidencia']} - Inici: {$incidencia['data']} - Temps total: {$incidencia['temps_total']} min";
-                        echo "</li>";
-                    }
-                    echo "</ul>";
+        foreach ($tecnics_data as $tecnic => $incidencies) {
+            echo "<div class='card p-4'>";
+            echo "<h3 class='card-title'>Tècnic: $tecnic</h3>";
+
+            if ($incidencies) {
+
+                echo "<ul class='list-group'>";
+                foreach ($incidencies as $incidencia) {
+                    echo "<li class='list-group-item'>";
+                    echo "Incidència #{$incidencia['cod_incidencia']} - Descripció: {$incidencia['descripcio']} - Data: {$incidencia['data']} - Prioritat: {$incidencia['prioritat']}";
+                    echo "</li>";
                 }
+                echo "</ul>";
+            } else {
+
+                echo "<p class='text-muted'>No té cap incidència assignada.</p>";
             }
 
             echo "</div>";
@@ -88,20 +94,21 @@ require "../connexio.php";
         <div class="row">
 
         <?php
-        $sql2 = "
+     
+        $sql_departaments = "
             SELECT 
                 d.nom_depart AS departament,
                 COUNT(i.cod_incidencia) AS total_incidencies,
-                IFNULL(SUM(CAST(a.temps_dedicat AS UNSIGNED)), 0) AS temps_total
+                IFNULL(SUM(CAST(d.temps_dedicat AS UNSIGNED)), 0) AS temps_total
             FROM Departament d
-            LEFT JOIN Incidencies i ON i.departament = d.cod_depart
-            LEFT JOIN Actuacions a ON i.cod_incidencia = a.cod_incidencia
+            LEFT JOIN Incidencies i ON i.departament = d.cod_depart AND i.estat != 'Tancada'
             GROUP BY d.nom_depart;
         ";
 
-        $result2 = $connexion->query($sql2);
+        $result_departaments = $connexion->query($sql_departaments);
 
-        while ($row = $result2->fetch_assoc()) {
+
+        while ($row = $result_departaments->fetch_assoc()) {
             echo "<div class='col-md-6'>";
             echo "<div class='card p-4'>";
             echo "<h5 class='card-title'>Departament: {$row['departament']}</h5>";
