@@ -4,25 +4,48 @@ $consulta = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigoConsulta = $_POST['codigoConsulta'];
-    $sql = "SELECT estat FROM Incidencies WHERE cod_incidencia = ?";
+    
+    $sql = "SELECT t.nom_tecnic, a.descripcio, a.data_actuacio 
+            FROM Actuacions a 
+            JOIN Tecnics t ON t.cod_tecnic = a.cod_tecnic 
+            WHERE a.cod_incidencia = ? 
+            ORDER BY a.data_actuacio DESC";
+
     $stmt = $connexion->prepare($sql);
     $stmt->bind_param("s", $codigoConsulta);
     $stmt->execute();
-    $stmt->store_result();
+    $result = $stmt->get_result();
 
-    if ($stmt->num_rows > 0) {
-        $estat = "";
-        $stmt->bind_result($estat);
-        $stmt->fetch();
-        $consulta = "<div class='alert alert-success mt-4'>La incidència <strong>$codigoConsulta</strong> està <strong>$estat</strong>.</div>";
+    if ($result->num_rows > 0) {
+        $consulta = "<div class='mt-4'><h3 class='mb-3'>Actuacions per a la incidència <strong>$codigoConsulta</strong>:</h3>";
+        $consulta .= "<table class='table table-bordered table-striped'>
+                        <thead>
+                            <tr>
+                                <th>Tècnic</th>
+                                <th>Descripció</th>
+                                <th>Data d'actuació</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+
+        while ($row = $result->fetch_assoc()) {
+            $consulta .= "<tr>
+                            <td>" . htmlspecialchars($row['nom_tecnic']) . "</td>
+                            <td>" . htmlspecialchars($row['descripcio']) . "</td>
+                            <td>" . htmlspecialchars($row['data_actuacio']) . "</td>
+                          </tr>";
+        }
+
+        $consulta .= "</tbody></table></div>";
     } else {
-        $consulta = "<div class='alert alert-danger mt-4'>⚠ No hi ha cap incidència amb aquest codi.</div>";
+        $consulta = "<div class='alert alert-danger mt-4'>⚠ No hi ha cap actuació per aquesta incidència.</div>";
     }
 
     $stmt->close();
 }
 $connexion->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ca">
