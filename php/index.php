@@ -1,3 +1,10 @@
+<?php
+$name = "client";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Informes de Tècnics i Departaments";
+rellenarMongo($name, $ip, $hora, $pages);
+?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
