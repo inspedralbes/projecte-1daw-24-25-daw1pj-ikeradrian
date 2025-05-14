@@ -1,16 +1,40 @@
 <?php
 require 'vendor/autoload.php';
 
-use MongoDB\Client;
+$client = new MongoDB\Client("mongodb://root:example@mongo:27017");
 
-try {
-    $mongoClient = new Client("mongodb://localhost:27017");
+$collection = $client->demo->users;
 
-    $db = $mongoClient->gestor_incidencies;
+// Obtenim l'adreça IP origen de la petció.
+// Teniu informació sobre l'operador ?? a 
+// https://phpsensei.es/operadores-en-php-null-coalesce-operator/
+// "Si no es pot obtenir, es fa servir 'unknown' com a valor per defecte"
 
-    $logsCollection = $db->logs;
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
 
-} catch (Exception $e) {
-    die("Error de connexió amb MongoDB: " . $e->getMessage());
+
+echo "Dades inserides a demo .\n";
+
+
+// Obtenir tots els documents de la col·lecció users de la BBDD demo
+// $collection = $client->demo->users; #no cal, ja que ho hem fet abans
+$documents = $collection->find();
+
+foreach ($documents as $document) {
+    echo "<p>";
+    echo htmlspecialchars($document['date'] ?? "x");
+    echo " ( " . htmlspecialchars($document['ip_origin'] ?? "x") . " )";
+    echo " : " . htmlspecialchars($document['name']);
+    echo "</p>";
+
 }
-?>  
+
+function rellenarMongo ($name, $ip, $hora, $pages){
+    $collection->insertOne([
+    'name' => $name,
+    'ip_origin' => $ip,
+    'date' => $hora,
+    'pagina_visitada' => $pages
+    ]);
+}
