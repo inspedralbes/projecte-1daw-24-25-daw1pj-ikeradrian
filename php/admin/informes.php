@@ -1,5 +1,6 @@
 <?php 
 require "../connexio.php";
+require '../connexion_mongo.php';
 $name = "admin";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
@@ -127,7 +128,7 @@ rellenarMongo($name, $ip, $hora, $pages);
         </div>
 
         <div class="text-center mt-4">
-            <a href="admin.html" class="btn btn-secondary">Tornar al menú</a>
+            <a href="admin.php" class="btn btn-secondary">Tornar al menú</a>
         </div>
     </div>
 </body>

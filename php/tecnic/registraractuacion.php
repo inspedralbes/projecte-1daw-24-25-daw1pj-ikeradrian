@@ -1,6 +1,6 @@
 <?php
 require "../connexio.php";
-
+require '../connexion_mongo.php';
 $name = "tecnic";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");

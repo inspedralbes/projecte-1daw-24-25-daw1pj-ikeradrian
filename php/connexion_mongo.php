@@ -21,17 +21,8 @@ $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("Y-m-d H:i:s");
 $pages = $_SERVER['REQUEST_URI'] ?? 'index.php';
 
-rellenarMongo($name, $ip, $hora, $pages);
 
 $client = new Client("mongodb://root:example@mongo:27017");
 $collection = $client->demo->users;
 $documents = $collection->find();
-
-foreach ($documents as $document) {
-    echo "<p>";
-    echo htmlspecialchars($document['date']->toDateTime()->format('Y-m-d H:i:s') ?? "x");
-    echo " (" . htmlspecialchars($document['ip_origin'] ?? "x") . ")";
-    echo " : " . htmlspecialchars($document['name']);
-    echo "</p>";
-}
 ?>

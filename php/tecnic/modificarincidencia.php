@@ -1,5 +1,6 @@
 <?php
 require "../connexio.php";
+require '../connexion_mongo.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cod_incidencia = $_POST['cod_incidencia'];
     $cod_tecnic = $_POST['cod_tecnic'];

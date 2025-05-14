@@ -1,5 +1,6 @@
 <?php
 require "../connexio.php";
+require '../connexion_mongo.php';
 $consulta = "";
 
 $name = "usuari";

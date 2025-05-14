@@ -1,6 +1,6 @@
 <?php 
 require "../connexio.php"; 
-
+require '../connexion_mongo.php';
 $name = "admin";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
@@ -146,7 +146,7 @@ $connexion->close();
         </div>
 
         <div class="text-center mt-4">
-            <a href="admin.html" class="btn btn-outline-secondary">Tornar a l'inici</a>
+            <a href="admin.php" class="btn btn-outline-secondary">Tornar a l'inici</a>
         </div>
     </div>
 
