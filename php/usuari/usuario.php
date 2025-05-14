@@ -1,3 +1,10 @@
+<?php
+$name = "usuari";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Zona de l'usuari";
+rellenarMongo($name, $ip, $hora, $pages);
+?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -81,7 +88,7 @@
             <a href="llistarincidencies.php" class="btn btn-custom btn-listar">Llistar incidències</a>
             <a href="crearincidencia.php" class="btn btn-custom btn-crear">Crear incidència</a>
             <a href="consultarincidencia.php" class="btn btn-custom btn-consultar">Consultar incidència</a>
-            <a href="../index.html" class="btn btn-custom btn-retorn">Tornar a l'inici</a>
+            <a href="../index.php" class="btn btn-custom btn-retorn">Tornar a l'inici</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

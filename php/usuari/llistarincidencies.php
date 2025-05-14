@@ -1,5 +1,12 @@
 <?php
 require_once '../connexio.php';
+
+$name = "usuari";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Llistat d'incidències";
+rellenarMongo($name, $ip, $hora, $pages);
+
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -118,7 +125,7 @@ require_once '../connexio.php';
     <?php $connexion->close(); ?>
 
     <div class="text-center mt-4">
-        <a href="usuario.html" class="btn btn-outline-secondary me-2">Inici</a>
+        <a href="usuario.php" class="btn btn-outline-secondary me-2">Inici</a>
         <a href="crearincidencia.php" class="btn btn-outline-success">Crear nova incidència</a>
     </div>
 </div>

@@ -1,3 +1,10 @@
+<?php
+$name = "admin";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Menú d'administrador";
+rellenarMongo($name, $ip, $hora, $pages);
+?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -73,7 +80,7 @@
             <a href="asignartecnicos.php" class="btn btn-custom btn-admin-action">Assignar tècnics a incidències</a>
             <a href="informes.php" class="btn btn-custom btn-admin-action">Veure informes</a>
             <a href="estadistiques.php" class="btn btn-custom btn-admin-action">Veure estadístiques</a>
-            <a href="../index.html" class="btn btn-custom btn-back mt-4">Tornar enrere</a>
+            <a href="../index.php" class="btn btn-custom btn-back mt-4">Tornar enrere</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

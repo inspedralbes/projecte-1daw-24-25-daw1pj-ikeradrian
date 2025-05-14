@@ -1,6 +1,13 @@
 <?php
 require "../connexio.php";
 
+$name = "tecnic";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Resgistrar actuació";
+rellenarMongo($name, $ip, $hora, $pages);
+
+
 $missatge = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

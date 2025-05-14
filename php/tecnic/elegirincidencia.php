@@ -1,6 +1,12 @@
 <?php
 require "../connexio.php";
 
+$name = "tecnic";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Escollir incidència";
+rellenarMongo($name, $ip, $hora, $pages);
+
 $sql = "SELECT cod_incidencia, descripcio, nom_tecnic, prioritat FROM Incidencies";
 $resultat = $connexion->query($sql);
 ?>
@@ -49,7 +55,7 @@ $resultat = $connexion->query($sql);
         </table>
     </div>
     <div class="mt-4 d-flex justify-content-center">
-        <a href="tecnic.html" class="btn btn-outline-secondary">Tornar a l'inici</a>
+        <a href="tecnic.php" class="btn btn-outline-secondary">Tornar a l'inici</a>
     </div>
 </body>
 </html>

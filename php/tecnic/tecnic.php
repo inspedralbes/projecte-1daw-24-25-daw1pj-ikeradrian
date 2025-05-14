@@ -1,3 +1,10 @@
+<?php
+$name = "tecnic";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Zona de tècnic";
+rellenarMongo($name, $ip, $hora, $pages);
+?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -15,7 +22,7 @@
         <div class="d-grid gap-4 col-6 mx-auto">
             <a href="elegirincidencia.php" class="btn btn-outline-danger btn-lg border-2" style="background-color: #f8d7da;">Registrar actuació</a>
             <a href="modificarincidencia.php" class="btn btn-outline-danger btn-lg border-2" style="background-color: #f8d7da;">Modificar incidència</a>
-            <a href="../index.html" class="btn btn-outline-secondary btn-lg border-2">Tornar enrere</a>
+            <a href="../index.php" class="btn btn-outline-secondary btn-lg border-2">Tornar enrere</a>
         </div>
     </div>
 

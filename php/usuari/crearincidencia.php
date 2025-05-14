@@ -1,6 +1,12 @@
 <?php 
 require "../connexio.php";
 
+$name = "usuari";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Creació d'incidència";
+rellenarMongo($name, $ip, $hora, $pages);
+
 $departaments = [];
 $result = $connexion->query("SELECT cod_depart, nom_depart FROM Departament");
 if ($result) {
@@ -145,7 +151,7 @@ $connexion->close();
         </form>
 
         <div class="mt-4">
-            <a href="usuario.html" class="btn btn-back">Tornar a l'inici</a>
+            <a href="usuario.php" class="btn btn-back">Tornar a l'inici</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

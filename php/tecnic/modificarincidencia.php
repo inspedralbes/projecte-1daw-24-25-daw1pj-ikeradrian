@@ -12,6 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $connexion->close();
 }
+
+$name = "tecnic";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "Modificar incidència";
+rellenarMongo($name, $ip, $hora, $pages);
+
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -66,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <div class="mt-4">
-            <a href="tecnic.html" class="btn btn-outline-secondary">Tornar a l'inici</a>
+            <a href="tecnic.php" class="btn btn-outline-secondary">Tornar a l'inici</a>
         </div>
     </div>
 

@@ -2,6 +2,12 @@
 require "../connexio.php";
 $consulta = "";
 
+$name = "usuari";
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$hora = date("H:i:s");
+$pages = "consultar incidència";
+rellenarMongo($name, $ip, $hora, $pages);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigoConsulta = $_POST['codigoConsulta'];
     
@@ -141,7 +147,7 @@ $connexion->close();
         </form>
 
         <div class="mt-4">
-            <a href="usuario.html" class="btn btn-back">Tornar a l'inici</a>
+            <a href="usuario.php" class="btn btn-back">Tornar a l'inici</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

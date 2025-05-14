@@ -1,4 +1,5 @@
 <?php
+require 'connexion_mongo.php';
 $name = "client";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
@@ -83,9 +84,9 @@ rellenarMongo($name, $ip, $hora, $pages);
         <h2 class="mb-4">Selecciona el teu rol</h2>
 
         <div class="d-grid gap-3 col-6 mx-auto">
-            <a href="usuari/usuario.html" class="btn btn-custom btn-usuari">Sóc Usuari</a>
-            <a href="tecnic/tecnic.html" class="btn btn-custom btn-tecnic">Sóc Tècnic</a>
-            <a href="admin/admin.html" class="btn btn-custom btn-admin">Sóc Administrador</a>
+            <a href="usuari/usuario.php" class="btn btn-custom btn-usuari">Sóc Usuari</a>
+            <a href="tecnic/tecnic.php" class="btn btn-custom btn-tecnic">Sóc Tècnic</a>
+            <a href="admin/admin.php" class="btn btn-custom btn-admin">Sóc Administrador</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
