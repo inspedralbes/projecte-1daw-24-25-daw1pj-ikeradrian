@@ -152,5 +152,25 @@ $connexion->close();
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const input = document.getElementById('codigoConsulta');
+
+    
+        input.addEventListener('input', function () {
+            this.value = this.value.replace(/\D/g, ''); 
+     });
+
+    
+        const form = input.closest('form');
+        form.addEventListener('submit', function (e) {
+            if (!/^\d+$/.test(input.value)) {
+                e.preventDefault();
+                alert("Introdueix només números enters al codi de consulta.");
+            }
+        });
+    });
+    </script>
+
 </body>
 </html>

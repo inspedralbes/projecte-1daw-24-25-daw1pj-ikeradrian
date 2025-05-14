@@ -20,12 +20,14 @@ rellenarMongo($name, $ip, $hora, $pages);
 $client = new Client("mongodb://root:example@mongo:27017");
 $collection = $client->demo->users;
 
-// 🔽 Consultar registros ordenados por fecha descendente
-$documents = $collection->find([], ['sort' => ['date' => -1]]);
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['esborrar_tots'])) {
-    $collection->deleteMany([]); // ⚠ Elimina TOTS els documents
+if (isset($_POST['esborrar_tots'])) {
+    $collection->deleteMany([]);
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit;
 }
 
+// 🔽 Consultar registros ordenados por fecha descendente
+$documents = $collection->find([], ['sort' => ['date' => -1]]);
 ?>
 
 <!DOCTYPE html>
