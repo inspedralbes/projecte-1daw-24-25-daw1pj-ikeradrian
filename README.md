@@ -20,3 +20,5 @@ Desenvolupar una aplicació web que permeti la gestió d'incidències informàti
 
 ## Estructura de carpetes (arrel del projecte)
 
+
+![Diagrama E-R](/docs/Esquema E-R BBDD.png)
