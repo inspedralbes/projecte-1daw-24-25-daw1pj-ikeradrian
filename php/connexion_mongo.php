@@ -5,7 +5,7 @@ use MongoDB\Client;
 use MongoDB\BSON\UTCDateTime;
 
 function rellenarMongo($name, $ip, $hora, $pages) {
-    $client = new Client("mongodb://root:example@mongo:27017");
+    $client = new Client("mongodb://root:example@mongo :27017");
     $collection = $client->demo->users;
 
     $collection->insertOne([
