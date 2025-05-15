@@ -19,10 +19,9 @@ Desenvolupar una aplicació web que permeti la gestió d'incidències informàti
 - 🚀 **Projecte desplegat:** [https://exemple.com](https://exemple.com)
 
 ## Estructura de carpetes (arrel del projecte)
-/index.php → Entrada principal del projecte
+index.php → Entrada principal del projecte
 
 /php
-│
 ├── /css
 │ └── style.css → Estils generals
 │
