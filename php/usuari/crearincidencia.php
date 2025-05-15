@@ -15,29 +15,28 @@ if ($result) {
     }
 }
 
-$missatge = ""; // Variable para el mensaje
+$missatge = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $Departament = $connexion->real_escape_string($_POST['Departament']);
     $Data = date('Y-m-d H:i:s');
     $Descripcio = $connexion->real_escape_string($_POST['Descripcio']);
 
-    // Insertar la incidencia
+
     $sql = "INSERT INTO Incidencies (departament, data, descripcio) VALUES (?, ?, ?)";
     $stmt = $connexion->prepare($sql);
     $stmt->bind_param("sss", $Departament, $Data, $Descripcio);
     $stmt->execute();
 
-    // Obtener el código de la incidencia recién insertada
-    $cod_incidencia = $stmt->insert_id;  // Obtener el ID autoincrementado de la última fila insertada
 
-    // Actualizar el consumo del departamento
+    $cod_incidencia = $stmt->insert_id; 
+    
     $sql2 = "UPDATE Departament SET consum_depart = (consum_depart + 1) WHERE cod_depart = ?";
     $stmt2 = $connexion->prepare($sql2);
     $stmt2->bind_param("s", $Departament);
     $stmt2->execute();
 
-    // Mensaje de éxito con el código de la incidencia
+
     $missatge = "Incidència guardada correctament. Codi d'incidència: $cod_incidencia";
 }
 
