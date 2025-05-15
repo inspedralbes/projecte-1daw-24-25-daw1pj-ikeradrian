@@ -20,8 +20,8 @@ CREATE DATABASE IF NOT EXISTS a22adrmacfir_incidencies
 
 -- Donem permisos a l'usuari 'usuari' per accedir a la base de dades 'a22adrmacfir_incidencies'
 -- sinó, aquest usuari no podrà veure la base de dades i no podrà accedir a les taules
-GRANT ALL PRIVILEGES ON a22adrmacfir_incidencies.* TO 'a22adrmacfir_admin_incidencies'@'%';
-FLUSH PRIVILEGES;
+-- GRANT ALL PRIVILEGES ON a22adrmacfir_incidencies.* TO 'a22adrmacfir_admin_incidencies'@'%';
+-- FLUSH PRIVILEGES;
 
 
 -- Després de crear la base de dades, cal seleccionar-la per treballar-hi
