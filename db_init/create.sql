@@ -14,21 +14,21 @@
 -- Per assegurar-nes de que la codificació dels caràcters d'aquest script és la correcta
 SET NAMES utf8mb4;
 
-CREATE DATABASE IF NOT EXISTS a24ikelopgom_Proyecto
+CREATE DATABASE IF NOT EXISTS a22adrmacfir_incidencies
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
--- Donem permisos a l'usuari 'usuari' per accedir a la base de dades 'a24ikelopgom_Proyecto'
+-- Donem permisos a l'usuari 'usuari' per accedir a la base de dades 'a22adrmacfir_incidencies'
 -- sinó, aquest usuari no podrà veure la base de dades i no podrà accedir a les taules
-GRANT ALL PRIVILEGES ON a24ikelopgom_Proyecto.* TO 'usuari'@'%';
-FLUSH PRIVILEGES;
+-- GRANT ALL PRIVILEGES ON a22adrmacfir_incidencies.* TO 'a22adrmacfir_admin_incidencies'@'%';
+-- FLUSH PRIVILEGES;
 
 
 -- Després de crear la base de dades, cal seleccionar-la per treballar-hi
-USE a24ikelopgom_Proyecto;
+USE a22adrmacfir_incidencies;
 
 
--- Base de dades: a24ikelopgom_Proyecto
+-- Base de dades: a22adrmacfir_incidencies
 --
 
 -- --------------------------------------------------------
