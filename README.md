@@ -1,1 +1,22 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Oi3CGk0x)
+# Grup 4 – Projecte Web
+
+## Integrants del projecte
+
+- Adrian Maciel – a22adrmacfir@inspedralbes.cat
+- Iker López – a24ikelopgom@inspedralbes.cat
+
+## Objectiu del projecte
+
+Desenvolupar una aplicació web que permeti la gestió d'incidències informàtiques dirigida a una institució empresarial.
+
+## Estat del projecte
+
+> El projecte es troba actualment en desenvolupament.
+
+## Enllaços importants
+
+- 📄 **Documentació (PHPDoc):** [https://exemple.com/phpdoc](https://exemple.com/phpdoc)
+- 🚀 **Projecte desplegat:** [https://exemple.com](https://exemple.com)
+
+## Estructura de carpetes (arrel del projecte)
+
