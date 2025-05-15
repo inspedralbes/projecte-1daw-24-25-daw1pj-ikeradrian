@@ -22,3 +22,4 @@ Desenvolupar una aplicació web que permeti la gestió d'incidències informàti
 
 
 ![Diagrama E-R](docs/Esquema E-R BBDD.png)
+![Esquema E-R BBDD](https://github.com/user-attachments/assets/eed9558d-ea32-4661-a638-a04918c801eb)
