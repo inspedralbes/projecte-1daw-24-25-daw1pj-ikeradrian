@@ -1,10 +1,11 @@
 <?php
 require 'connexion_mongo.php';
+require 'connexio.php';
 $name = "client";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Gestor de incidencias";
-rellenarMongo($client, $name, $ip, $hora, $pages);
+rellenarMongo($collection, $name, $ip, $hora, $pages);
 ?>
 <!DOCTYPE html>
 <html lang="ca">

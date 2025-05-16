@@ -5,7 +5,7 @@ $name = "tecnic";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Escollir incidència";
-rellenarMongo($client, $name, $ip, $hora, $pages);
+rellenarMongo($collection, $name, $ip, $hora, $pages);
 
 $sql = "SELECT cod_incidencia, descripcio, nom_tecnic, prioritat FROM Incidencies";
 $resultat = $connexion->query($sql);

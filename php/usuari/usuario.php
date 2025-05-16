@@ -5,7 +5,7 @@ $name = "usuari";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Zona de l'usuari";
-rellenarMongo($client, $name, $ip, $hora, $pages);
+rellenarMongo($collection, $name, $ip, $hora, $pages);
 ?>
 <!DOCTYPE html>
 <html lang="ca">

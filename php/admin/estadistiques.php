@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../connexion_mongo.php';
+require '../connexio.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -13,7 +14,7 @@ $name = "admin";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Estadistiques";
-rellenarMongo($client, $name, $ip, $hora, $pages);
+rellenarMongo($collection, $name, $ip, $hora, $pages);
 
 
 $client = new Client("mongodb://root:example@mongo:27017");

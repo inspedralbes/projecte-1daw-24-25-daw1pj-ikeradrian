@@ -5,7 +5,7 @@ $name = "tecnic";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Resgistrar actuació";
-rellenarMongo($client, $name, $ip, $hora, $pages);
+rellenarMongo($collection, $name, $ip, $hora, $pages);
 
 
 $missatge = "";
