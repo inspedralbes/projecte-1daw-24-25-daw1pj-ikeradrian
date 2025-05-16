@@ -1,8 +1,8 @@
 <?php
-$servidor = "db";
-$user = "usuari";
-$password="paraula_de_pas";
-$dbname="a24ikelopgom_Proyecto";
+$servidor = "daw.inspedralbes.cat";
+$user = "a22adrmacfir_admin_incidencies";
+$password="fx*Qz8gbIp!#i=um";
+$dbname="a22adrmacfir_incidencies";
 
 $connexion = new mysqli($servidor, $user, $password, $dbname);
 
