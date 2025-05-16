@@ -5,7 +5,7 @@ $name = "admin";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Informes de Tècnics i Departaments";
-rellenarMongo($name, $ip, $hora, $pages);
+rellenarMongo($client, $name, $ip, $hora, $pages);
 ?>
 
 <!DOCTYPE html>

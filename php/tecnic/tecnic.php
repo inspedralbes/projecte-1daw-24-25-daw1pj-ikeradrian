@@ -5,7 +5,7 @@ $name = "tecnic";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Zona de tècnic";
-rellenarMongo($name, $ip, $hora, $pages);
+rellenarMongo($client, $name, $ip, $hora, $pages);
 ?>
 <!DOCTYPE html>
 <html lang="ca">

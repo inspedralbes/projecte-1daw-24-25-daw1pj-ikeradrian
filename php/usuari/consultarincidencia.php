@@ -7,7 +7,7 @@ $name = "usuari";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "consultar incidència";
-rellenarMongo($name, $ip, $hora, $pages);
+rellenarMongo($client, $name, $ip, $hora, $pages);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigoConsulta = $_POST['codigoConsulta'];

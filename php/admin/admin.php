@@ -5,7 +5,7 @@ $name = "admin";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Menú d'administrador";
-rellenarMongo($name, $ip, $hora, $pages);
+rellenarMongo($client, $name, $ip, $hora, $pages);
 ?>
 <!DOCTYPE html>
 <html lang="ca">

@@ -5,7 +5,7 @@ $name = "usuari";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Llistat d'incidències";
-rellenarMongo($name, $ip, $hora, $pages);
+rellenarMongo($client, $name, $ip, $hora, $pages);
 
 ?>
 <!DOCTYPE html>

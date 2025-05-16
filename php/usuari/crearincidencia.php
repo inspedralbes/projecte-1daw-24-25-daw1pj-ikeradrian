@@ -5,7 +5,7 @@ $name = "usuari";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Creació d'incidència";
-rellenarMongo($name, $ip, $hora, $pages);
+rellenarMongo($client, $name, $ip, $hora, $pages);
 
 $departaments = [];
 $result = $connexion->query("SELECT cod_depart, nom_depart FROM Departament");

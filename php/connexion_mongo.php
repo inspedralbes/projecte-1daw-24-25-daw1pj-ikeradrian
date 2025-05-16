@@ -3,9 +3,9 @@ require 'vendor/autoload.php';
 
 use MongoDB\Client;
 use MongoDB\BSON\UTCDateTime;
-
-function rellenarMongo($name, $ip, $hora, $pages) {
-    $client = new Client("mongodb://root:example@mongo :27017");
+$url = "mongodb+srv://a24ikelopgom:Dzsi7L4hfy9Y3niO@grupo4.vmvzio9.mongodb.net/?retryWrites=true&w=majority&appName=Grupo4";
+$client = new Client($url);
+function rellenarMongo($client, $name, $ip, $hora, $pages) {
     $collection = $client->demo->users;
 
     $collection->insertOne([
@@ -22,7 +22,8 @@ $hora = date("Y-m-d H:i:s");
 $pages = $_SERVER['REQUEST_URI'] ?? 'index.php';
 
 
-$client = new Client("mongodb://root:example@mongo:27017");
+
+$client = new Client($url);
 $collection = $client->demo->users;
 $documents = $collection->find();
 ?>

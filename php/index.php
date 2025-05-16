@@ -4,7 +4,7 @@ $name = "client";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Gestor de incidencias";
-rellenarMongo($name, $ip, $hora, $pages);
+rellenarMongo($client, $name, $ip, $hora, $pages);
 ?>
 <!DOCTYPE html>
 <html lang="ca">
