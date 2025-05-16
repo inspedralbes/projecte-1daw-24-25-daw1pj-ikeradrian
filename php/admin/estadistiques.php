@@ -14,28 +14,26 @@ $name = "admin";
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $hora = date("H:i:s");
 $pages = "Estadistiques";
+
+// Inserta el registro
 rellenarMongo($collection, $name, $ip, $hora, $pages);
 
-
-$client = new Client("mongodb://root:example@mongo:27017");
-$collection = $client->demo->users;
-
-
+// Borrar registros
 if (isset($_POST['esborrar_tots'])) {
     $collection->deleteMany([]);
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit;
 }
 
+// Contador d'accessos a una pàgina concreta
+$visitesIndex = $collection->countDocuments([
+    'pagina_visitada' => 'Informes de Tècnics i Departaments'
+]);
 
-$visitesIndex = $collection->countDocuments(['pagina_visitada' => 'Informes de Tècnics i Departaments']);
-
-
+// Ordenació per data
 $ordre = $_GET['ordre'] ?? 'desc';
 $sortOrder = $ordre === 'asc' ? 1 : -1;
-
-
-$documents = $collection->find([], ['sort' => ['date' => $sortOrder]]);
+$documents = $collection->find([], ['sort' => ['Data' => $sortOrder]]);
 ?>
 
 <!DOCTYPE html>
@@ -46,21 +44,10 @@ $documents = $collection->find([], ['sort' => ['date' => $sortOrder]]);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f9f9f9;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        h1 {
-            color: #003366;
-            font-weight: 700;
-        }
-        .table thead th {
-            background-color: #003366;
-            color: white;
-        }
-        .container {
-            max-width: 960px;
-        }
+        body { background-color: #f9f9f9; font-family: 'Segoe UI', sans-serif; }
+        h1 { color: #003366; font-weight: 700; }
+        .table thead th { background-color: #003366; color: white; }
+        .container { max-width: 960px; }
     </style>
 </head>
 <body>
@@ -90,26 +77,14 @@ $documents = $collection->find([], ['sort' => ['date' => $sortOrder]]);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($documents as $document): ?>
-                <?php
-                    $nom = htmlspecialchars($document['name'] ?? 'Sense nom');
-                    $ip = htmlspecialchars($document['ip_origin'] ?? 'Desconeguda');
-                    $datetime = $document['date'] instanceof UTCDateTime ? $document['date']->toDateTime() : null;
-                    $data = $datetime ? $datetime->format("d/m/Y") : "Sense data";
-                    $hora = $datetime ? $datetime->format("H:i:s") : "Sense hora";
-                    $pagina = htmlspecialchars($document['pagina_visitada'] ?? 'Sense pàgina');
-                ?>
                 <tr>
-                    <td><?= $nom ?></td>
+                    <td><?= $name ?></td>
                     <td><?= $ip ?></td>
-                    <td><?= $data ?></td>
                     <td><?= $hora ?></td>
-                    <td><?= $pagina ?></td>
+                    <td><?= $pages ?></td>
                 </tr>
-            <?php endforeach; ?>
         </tbody>
     </table>
-
 
     <div class="text-center mt-4">
         <a href="admin.php" class="btn btn-secondary">Tornar a l'inici</a>
