@@ -15,7 +15,6 @@ Desenvolupar una aplicació web que permeti la gestió d'incidències informàti
 
 ## Enllaços importants
 
-- **Documentació (PHPDoc):** [https://exemple.com/phpdoc](https://exemple.com/phpdoc)
 - **Projecte desplegat:** [http://grupo4.daw.inspedralbes.cat](http://grup4.daw.inspedralbes.cat/php/index.php)
 
 ## Estructura de carpetes (arrel del projecte)
